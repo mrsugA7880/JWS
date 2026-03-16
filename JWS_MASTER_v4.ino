@@ -42,8 +42,8 @@ RTC_DS3231 rtc;
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "time.nist.gov", 25200, 60000);
 
-const char* ssid_ntp = "error2";
-const char* pass_ntp = "jangantanya";
+const char* ssid_ntp = "SSID";
+const char* pass_ntp = "PASW";
 
 int Hour = -1, Minute = -1, Second = -1;
 double prayerTimes[7];
