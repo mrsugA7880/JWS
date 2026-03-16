@@ -2,7 +2,7 @@
 Smart JWS - SMK Electronics Edition
 
 <p align="center">
-  <img src="./img/PENDUKUNG/nice.png" width="100%" alt="Preview JWS">
+  <img src="./PENDUKUNG/nice.png" width="100%" alt="Preview JWS">
 </p>
 
 # 🕋 Smart JWS - SMK Electronics Edition
