@@ -63,4 +63,49 @@ Simpan file MP3 di dalam folder bernama `mp3` dengan format nama berikut:
 * **Upload:** Lepas kabel TX/RX saat proses upload sketch agar tidak terjadi error komunikasi.
 
 ---
+
+# 🛠️ Alur Logika JWS (Master & Slave)
+
+### 1. Master Logic (ESP8266 + Jam Pixel)
+Sistem utama yang mengatur perhitungan waktu, audio, dan pengiriman data serial.
+
+* **Proses Inti:** `Update Waktu (RTC/NTP)` --> `Hitung Jadwal Sholat` --> `Cek Waktu (Tarhim/Adzan/Iqomah)` --> `Kirim Data ke Slave` --> `Loop Motivasi`.
+
+* **Hirarki Prioritas:**
+    * **Prioritas 1 (Adzan):** Saat jam sholat tiba, Master mengirim perintah `<CONFIG,MSG,WAKTU ... TIBA>` dan memicu MP3 Adzan.
+    * **Prioritas 2 (Iqomah):** Mengirim data hitungan mundur `<CONFIG,TYPE,IQOMAH MM:SS>` secara kontinu.
+    * **Prioritas 3 (Normal):** Mengirim paket data Jam/Jadwal rutin dan pesan motivasi acak setiap **10 menit**.
+
+---
+
+### 2. Slave Logic (ESP8266 + Panel P10)
+Unit display yang memproses data serial dan mengatur antrean tampilan panel.
+
+* **Proses Inti:** `Terima Data Serial` --> `Filter Validasi (Jam vs Isi Pesan)` --> `Update Tampilan (Urutan 0-3)`.
+
+* **Mekanisme Filter:** Mengecek validitas pesan info sholat. Jika pesan mengandung kata "WAKTU" namun jam tidak sesuai dengan jadwal sholat, pesan akan diabaikan untuk mencegah data "salah alamat".
+
+---
+
+### 3. Siklus Tampilan Slave (Loop Display)
+Slave membagi tampilan ke dalam dua siklus antrean agar informasi seimbang.
+
+| Urutan | Mode Tampilan | Siklus A (Gilir Pesan HP) | Siklus B (Gilir Motivasi) |
+| :--- | :--- | :--- | :--- |
+| **0** | **Jam Besar** | Jam Digital format Big Number (7 detik) | Jam Digital format Big Number (7 detik) |
+| **1** | **Kalender** | Animasi Slide Hari dan Tanggal | Animasi Slide Hari dan Tanggal |
+| **2** | **Jadwal** | Daftar 6 Waktu Sholat (Typewriter) | Daftar 6 Waktu Sholat (Typewriter) |
+| **3** | **Running Text** | **Pesan Utama dari HP (User)** | **Pesan Motivasi dari Master** |
+
+---
+
+### 4. Ringkasan Komunikasi Serial
+* **Baudrate:** 9600 bps.
+* **Format Data:** `<H,M,S,Tgl,Bln,Thn,Imsak,Subuh,Dzuhur,Ashar,Magrib,Isya*Checksum>`.
+* **Trigger Command:** * `CONFIG,BRIGHT` (Kecerahan)
+    * `CONFIG,TYPE` (Pesan Otomatis/Iqomah)
+    * `CONFIG,MSG` (Pesan User)
+
+---
+
 **Developed by SMK Electronics - 2026**
