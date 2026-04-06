@@ -1,4 +1,4 @@
-# JWS
+# JWS - STANDALONE - NEOPIXEL
 Smart JWS - SMK Electronics Edition - NEOPIXEL STANDALONE
 
 # 🕋 Smart JWS - SMK Electronics Edition
