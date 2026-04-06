@@ -18,7 +18,6 @@ Smart JWS - SMK Electronics Edition - NEOPIXEL STANDALONE
 | Komponen | Pin Wemos | Keterangan |
 | :--- | :--- | :--- |
 | **RTC DS3231** | D2 (SDA), D1 (SCL) | Waktu Presisi |
-| **Data Out** | **TX** | Kirim ke RX Slave |
 | **Power** | 5V & GND | Sumber Daya |
 
 ---
