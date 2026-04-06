@@ -23,7 +23,6 @@ Smart JWS - SMK Electronics Edition - NEOPIXEL STANDALONE
 ---
 
 ## 📝 Catatan Teknis
-* **Baudrate:** Master dan Slave disetel pada kecepatan `9600 bps`.
 * **Power:** Gunakan Power Supply minimal **5V 5A** jika menggunakan lebih dari 1 panel P10.
 * **Upload:** Login melalui koneksi wifi master, update menggunakan OTA.
 ---
