@@ -1,9 +1,5 @@
 # JWS
-Smart JWS - SMK Electronics Edition
-
-<p align="center">
-  <img src="./PENDUKUNG/nice.png" width="100%" alt="Preview JWS">
-</p>
+Smart JWS - SMK Electronics Edition - NEOPIXEL STANDALONE
 
 # 🕋 Smart JWS - SMK Electronics Edition
 **Sistem Jam Waktu Sholat Berbasis Dual-ESP8266 (Master-Slave)**
